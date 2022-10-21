@@ -1,0 +1,43 @@
+Metadata-Version: 2.1
+Name: commonroad-route-planner
+Version: 2022.2
+Summary: route planner for CommonRoad scenarios
+Home-page: https://gitlab.lrz.de/tum-cps/commonroad-route-planner
+Author: Daniel Tar, Edmond Irani Liu
+Author-email: commonroad@lists.lrz.de
+License: BSD
+Keywords: autonomous automated vehicles driving motion planning
+Platform: UNKNOWN
+Classifier: Programming Language :: Python :: 3.7
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Operating System :: MacOS
+Description-Content-Type: text/markdown
+Requires-Dist: commonroad-io (>=2021.1)
+Requires-Dist: networkx (>=2.4)
+Requires-Dist: numpy (>=1.17.4)
+Requires-Dist: shapely (>=1.6.4.post2)
+Requires-Dist: matplotlib (>=3.1.2)
+Requires-Dist: setuptools (>=42.0.1)
+
+# CommonRoad Route Planner
+
+The basic functionality of this package is to find sequences of lanelets (also referred to as routes) that lead from the initial lanelet(s)  to the goal lanelet(s) of a given planning problem. It also works with survival scenarios (where no goal region is specified). In addition, the package generates a reference path for each of the planned route, which can be used to construct a curvilinear coordinate system at a later stage.
+
+### Supported Backends
+The planner supports different backends to search for the shortest route in the scenario:
+1. NETWORKX: uses built-in functions from the networkx package, tends to change lanes later
+2. NETWORKX_REVERSED: uses built-in functions from the networkx package, tends to change lanes earlier
+3. PRIORITY_QUEUE: uses A-star search to find routes, lane change maneuver depends on the heuristic cost
+## Installation
+
+To use this module, run the setup script in the root folder:
+
+```bash
+pip install .
+```
+Or simply install the dependencies listed in `requirements.txt` and add this repository to your python path.
+## Minimal Example
+A tutorial notebook and an example script can be found under the `tutorial/` folder.
+
+
