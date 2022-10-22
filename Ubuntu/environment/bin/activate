@@ -37,6 +37,29 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
+filesdir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+python_interpreter="#!${filesdir}/python3"
+# echo ${python_interpreter}
+for file in `ls ${filesdir}`
+do
+    # echo "do loop"
+    if [ ${file:0:6} = "python" ];
+    then
+        :
+        # echo ${file}
+    elif [ ${file:0:8} = "activate" ];
+    then
+        :
+        # echo ${file}
+    else
+        :
+        # echo ${file}
+        read_file="${filesdir}/${file}"
+        # echo "python file: " ${read_file}
+        sed -i "1c ${python_interpreter}" ${read_file}
+    fi
+done
+
 workdir=$( dirname $( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd ) )
 
 VIRTUAL_ENV="${workdir}"
