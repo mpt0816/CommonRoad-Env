@@ -37,7 +37,9 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/home/mpt/github/CommonRoad-Env/Ubuntu/environment"
+workdir=$( dirname $( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd ) )
+
+VIRTUAL_ENV="${workdir}"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
